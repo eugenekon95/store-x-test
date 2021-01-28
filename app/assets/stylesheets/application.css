@@ -1,0 +1,115 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require bootstrap
+ *= require_tree .
+ *= require easy-autocomplete
+ *= require_self
+ *= stub "active_admin"
+ */
+
+body {
+    background: #f7fdff;
+}
+
+html{
+    position:relative;
+    min-height: 100%;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+}
+
+.pageContentWrapper{
+    margin-bottom:100px;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.comment-text-area{
+    min-height: 100px;
+    max-height: 314px;
+}
+
+.rating {
+    margin-top: 10px;
+    float: left;
+}
+.rating::before, .rating::after {
+    content: '';
+    display: table;
+}
+.rating::after {
+    clear: both;
+}
+.rating__check {
+    display: none;
+}
+.rating__check:checked ~ .rating__star {
+    color: #ffde00;
+}
+.rating__star {
+    position: relative;
+    display: block;
+    float: right;
+    height: 0;
+    width: 0;
+    border-right: 10px solid transparent;
+    border-bottom: 7px solid;
+    border-left: 10px solid transparent;
+    margin-right: 5px;
+    font-size: 0;
+    line-height: 0;
+    color: #e1e1e1;
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+    cursor: pointer;
+}
+.rating__star::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -6px;
+    height: 0;
+    width: 0;
+    border-bottom: 8px solid;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    -webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+}
+.rating__star::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-right: 10px solid transparent;
+    border-bottom: 7px solid;
+    border-left: 10px solid transparent;
+    -webkit-transform: rotate(-70deg);
+    transform: rotate(-70deg);
+}
+.rating__star:hover {
+    color: #ffde00;
+}
+.rating__star:hover ~ .rating__star {
+    color: #ffde00;
+}

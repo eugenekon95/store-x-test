@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+
+    <%= link_to "Store-X", root_path, class: "navbar-brand" %>
+
+    <%= form_with url: search_products_path, class: "search_form form-inline ml-lg-5", method: :get, local: true do |f| %>
+      <%= f.text_field :q, id: "search-product", class: "form-control mr-2", type: "search",
+                       placeholder: "Search", data: { behavior: "autocomplete" } %>
+      <%= f.submit "Search", class: 'btn btn-danger ml-2 my-2 my-sm-0', type: "submit" %>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <% if current_user %>
+          <li class="nav-item">
+            <%= link_to 'Admin Panel',  admin_root_path, class: "nav-link"%>
+          </li>
+          <li class="nav-item ml-lg-3">
+            <%= link_to(profile_cart_path, class: "nav-link") do %>
+              <i class="fas fa-book"></i>
+            <% end %>
+          </li>
+          <li class="nav-item ml-lg-3">
+            <%= link_to(cart_path, class: "nav-link") do %>
+              <i class="fas fa-shopping-cart"></i>
+            <% end %>
+          </li>
+          <li class="nav-item ml-lg-3">
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+</nav>

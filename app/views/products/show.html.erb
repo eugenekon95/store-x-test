@@ -1,0 +1,84 @@
+<div class="container mt-5 pb-5">
+
+  <div class="row">
+
+    <div class="col-lg-3">
+      <%= render 'shared/categories' %>
+    </div>
+
+    <div class="col-lg-9 my-4">
+      <div class="row">
+        <div class="col-12 mb-4">
+          <div class="card h-100">
+           
+   <%= cl_image_tag(@product.image_url, class: "card-img-top") %>
+ 
+            <div class="card-body">
+              <h4 class="card-title">
+                <%= @product.name %> ( <%= @product.average_rating  %> <i class="fas fa-star" style="color: #ffde00"></i>)
+              </h4>
+              <h5>$<%= @product.price %></h5>
+              <p class="card-text text-justify"><%= @product.description %></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7 py-5">
+          <% if current_user.present? && allowed_to_comment(@product) %>
+            <div class="card shadow">
+              <div class="row">
+                <div class="rating-stars col-12 my-3 pl-5">
+                  <h6>Rate product:</h6>
+                  <%= render 'comments/stars_rating' %>
+                </div>
+                <div class="col-12 pl-5 mb-3 pr-5">
+                  <%= render 'comments/comment_form', product_id: @product.id, comment: @comment %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <% @comments.each do |comment| %>
+          <div class="col-lg-10">
+            <div class="card shadow mb-5">
+              <div class="card-header">
+                <h6><%= comment.user.name %></h6>
+              </div>
+
+              <div class="card-body">
+                <% comment.rating.times do %>
+                  <i class="fas fa-star" style="color: #ffde00"></i>
+                <% end %>
+                <% blank_stars(comment.rating).times do %>
+                  <i class="far fa-star" style="color: #e1e1e1"></i>
+                <% end %>
+                <p class="card-text mt-3"><%= comment.body %></p>
+              </div>
+
+              <% if comment_author?(current_user, comment) %>
+                <div class="row">
+                  <div class="toggle-edit-btn col-12 text-right pl-5 mb-3 pr-5">
+                    <a class="text-dark" style="font-size: 1.5em; cursor: pointer">
+                      <i class="far fa-edit"></i>
+                    </a>
+                    <%= link_to(product_comment_path(@product, comment),
+                                method: :delete, class: "text-dark ml-3", style: "font-size: 1.5em") do %>
+                      <i class="far fa-trash-alt"></i>
+                    <% end %>
+                  </div>
+                  <div class="update-comment-form col-12 text-right pl-5 mb-3 pr-5">
+                    <%= render 'comments/comment_form', comment: comment %>
+                  </div>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+  <%= render 'products/lightbox' %>
+</div>

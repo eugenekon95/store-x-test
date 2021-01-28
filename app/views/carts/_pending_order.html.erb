@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row w-100">
+    <div class="col-lg-12 col-md-12 col-12">
+      <h3 class="display-5 mt-5 mb-2 text-center">Shopping Cart</h3>
+      <p class="mb-5 text-center">
+        <i class="text-info font-weight-bold"><%= @order_items.count %></i> items in your cart</p>
+      <table id="shoppingCart" class="table table-condensed table-responsive">
+        <thead>
+        <tr>
+          <th style="width:60%">Product</th>
+          <th style="width:12%">Price $</th>
+          <th style="width:10%">Quantity</th>
+          <th style="width:16%"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @order_items.each do |item| %>
+          <tr class="order-item">
+            <td data-th="Product">
+              <div class="row">
+                <div class="col-md-3 text-left">
+                 
+                </div>
+                <div class="col-md-9 text-left mt-sm-2">
+                  <h4><%= item.product.name %></h4>
+                </div>
+              </div>
+            </td>
+            <td data-th="Price" class="item-price"><%= item.product.price %></td>
+            <td data-th="Quantity">
+              <input type="number" class="form-control form-control-lg text-center item-quantity" min="1" value="<%= item.quantity %>">
+            </td>
+            <td class="actions" data-th="">
+              <div class="text-right">
+                <%= link_to(product_order_item_path(product_id: item.product_id, id: item.id),
+                            method: :delete, class: "btn btn-white border-secondary bg-white btn-md mb-2") do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+      <div class="float-right text-right">
+        <h4>Subtotal:</h4>
+        <h2 style="font-size: 2.3em" id="total-price"></h2>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4 d-flex align-items-center mb-5">
+    <div class="col-lg-9 col-sm-7 mb-3 mb-m-1 order-md-1 text-md-left">
+      <i class="fas fa-arrow-left mr-2 text-info"><%= link_to " Continue Shopping", root_path, class: "text-info text-decoration-none" %></i>
+    </div>
+    <div class="col-lg-3 col-sm-5 order-md-2">
+      <button type="button" id="create-order-button" class="btn btn-info mb-4 float-right btn-lg pl-5 pr-5">Create order</button>
+    </div>
+  </div>
+  <button type="button" class="show-modal btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"></button>
+</div>

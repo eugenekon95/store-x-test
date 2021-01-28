@@ -1,0 +1,9 @@
+<section class="pt-5 pb-5">
+  <% if @order_items.count.positive? %>
+    <%= render 'carts/pending_order' %>
+  <% else %>
+    <%= render 'carts/empty_cart' %>
+  <% end %>
+
+  <%= render 'carts/modal_success_order' %>
+</section>

@@ -1,0 +1,17 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h2 class="modal-title text-success" id="exampleModalLongTitle">Thank you for order <i class="far fa-heart"></i></h2>
+      </div>
+      <div class="modal-body">
+        <%= image_tag("https://www.herbcience.com/assets/img/cart_empty.png", class: "card-img-top") %>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <%= link_to " Continue Shopping", root_path, class: "btn btn-outline-info py-2 float-left" %>
+        <%= link_to " View orders profile", profile_cart_path, class: "btn btn-outline-success py-2" %>
+      </div>
+    </div>
+  </div>
+</div>

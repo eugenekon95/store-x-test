@@ -1,0 +1,15 @@
+<div class="list-group my-4">
+  <% Category.where(parent_id: nil).each do |category| %>
+    <div class="btn-group dropdown">
+      <%= link_to category.name, category, class: "col-lg-7 col-sm-4 btn text-decoration-none text-left", id: category.id %>
+      <button type="button" class="col-lg-3 col-sm-1 btn dropdown-toggle dropdown-toggle-split text-left" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropright</span>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <% category.subcategories.each do |subcategory| %>
+          <%= link_to subcategory.name, subcategory, class: "dropdown-item", type: "button", id: subcategory.id %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
